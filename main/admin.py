@@ -1,6 +1,7 @@
 from django.contrib import admin
 # Register your models here.
 import os
+import glob
 from .models import *
 
 
@@ -12,5 +13,7 @@ class SubdomainAdmin(admin.ModelAdmin):
         ret = super().response_change(request, obj)
         if '_Delete' in request.POST:
             print("-----delete---------")
-            os.remove("C:/Users/g700515/Desktop/fluv")
+            files = glob.glob('D:/django/test/*')
+            for f in files:
+                os.remove(f)
         return ret

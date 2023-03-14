@@ -8,11 +8,9 @@ from .models import *
 class SubdomainAdmin(admin.ModelAdmin):
     list_display = ['sub_domain', 'status','created']
     model = Subdomain
-    def delete_model(self, request, obj):
-        print('==========================delete_model==========================')
-        print(obj)
-        os.remove("/tmp/hx.txt")
-        obj.delete()
-        print('==========================delete_model==========================')
-    
-
+    def response_change(self, request, obj):
+        ret = super().response_change(request, obj)
+        if '_Delete' in request.POST:
+            print("-----delete---------")
+            os.remove("C:/Users/g700515/Desktop/fluv")
+        return ret
